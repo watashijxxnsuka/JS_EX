@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시계</title>
+  <style>
+  </style>
+</head>
+<body>
+  <h1 class="clock"></h1>
+
+  <script>
+    const nowDateTime = new Date();
+    let hour = nowDateTime.getHours();
+    let minute = nowDateTime.getMinutes();
+    let second = nowDateTime.getSeconds();
+    let clock = document.getElementsByClassName('clock')[0];
+
+    const convertZeroTime = (clock) => {
+
+    let timeStr = clock < 10 ? `0${clock}` : clock;
+
+    return timeStr;
+} 
+
+    clock.innerText = `${convertZeroTime(hour)}:${convertZeroTime(minute)}:${convertZeroTime(second)}`
+
+    let interval = setInterval(() => {
+      
+        ++second;
+        if(second >= 60){
+          ++minute;
+          second = 0;
+        }
+
+        if(minute >= 60) {
+          ++hour;
+          minute = 0;
+        }
+
+        if(hour >= 24) {
+          hour = 0;
+        }
+
+        clock.innerText = `${convertZeroTime(hour)}:${convertZeroTime(minute)}:${convertZeroTime(second)}`;
+      }, 1000);
+
+
+      
+
+  </script>
+</body>
+</html>
