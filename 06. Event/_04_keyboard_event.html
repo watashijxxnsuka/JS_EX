@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>키보드 이벤트</title>
+</head>
+<body>
+  <form action="/user/login" id="login-form">
+    <div>
+      <label>아이디
+        <input type="text" id="username" name="username">
+      </label>
+    </div>
+    <div>
+      <label>비밀번호
+        <input type="password" id="password" name="password">
+      </label>
+    </div>
+    <input type="submit" value="로그인" id="submit">
+    <div>
+      <a href="https://www.naver.com" id="link">네이버</a>
+    </div>
+  </form>
+
+  <script>
+    const loginForm = document.querySelector('#login-form');
+    const username = document.querySelector('#username');
+    const password = document.querySelector('#password');
+    const link = document.querySelector('#link');
+
+    // 1. 키보드 이벤트 등록
+    username.addEventListener('keydown', (e) => {
+      console.log(e);
+
+      if(e.keyCode === 13) {
+        // form 에 submit 버튼이 존재한채로 input 창에서 엔터를 입력하면 form 이 submit 된다.
+        // 이벤트 객체의 preventDefault() 메소드를 통해서 이벤트가 기존에 가지고 있던 기능 차단.
+        e.preventDefault();
+
+        if(username.value === '') {
+          alert('아이디를 입력하세요.');
+          return;
+        }
+
+        if(password.value === '') {
+          alert('비밀번호를 입력하세요.');
+          return;
+        }
+
+        // 강제로 이벤트 발생
+        loginForm.submit();
+      }
+    });
+
+
+    password.addEventListener('keydown', (e) => {
+      console.log(e);
+
+      if(e.keyCode === 13) {
+        e.preventDefault();
+
+        if(username.value === '') {
+          alert('아이디를 입력하세요.');
+          return;
+        }
+
+        if(password.value === '') {
+          alert('비밀번호를 입력하세요.');
+          return;
+        }
+
+        loginForm.submit();
+      }
+    });
+
+
+    submit.addEventListener('click', (e) => {
+        if(username.value === '') {
+          alert('아이디를 입력하세요.');
+          e.preventDefault();
+          return;
+        }
+
+        if(password.value === '') {
+          alert('비밀번호를 입력하세요.');
+          e.preventDefault();
+          return;
+        }
+
+        loginForm.submit();
+      
+    });
+
+
+    // 2. a 태그의 기본 이벤트 막기
+    link.addEventListener('click', (e) => { 
+      e.preventDefault();
+      window.open(link.getAttribute('href'));
+    });
+  </script>
+</body>
+</html>

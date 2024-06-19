@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button type="button" id="btn1">버튼1</button>
+  </div>
+  <div>
+    <button type="button" id="btn2">버튼2</button>
+  </div>
+  <div>
+    <button type="button" id="btn3">버튼3</button>
+  </div>
+  <a href="https://www.naver.com" id="link">네이버</a>
+  <script>
+    const btn1 = document.querySelector('#btn1');
+    const btn2 = document.querySelector('#btn2');
+
+    let clickCnt = 0;
+
+    btn1.addEventListener('click', (e) => {
+      alert(`클릭횟수: ${++clickCnt}`);
+    });
+
+    btn2.addEventListener('click', (e) => {
+      //btn1 을 강제로 클릭한 것 처럼 이벤트를 발생시킨다.
+      btn1.click();
+    });
+
+    
+    // btn3 을 클릭했을 때 네이버로 이동하도록 .
+    const btn3 = document.querySelector('#btn3');
+    const a = document.querySelector('#link');
+
+    btn3.addEventListener('click', (e) => {
+      a.click();
+    });
+
+    // a 태그를 클릭했을 때 btn1이 클릭된 것처럼 .
+    a.addEventListener('click', (e) => {
+      btn1.click();
+      e.preventDefault();
+    });
+
+
+  </script>
+</body>
+</html>
